@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "eams-44eb1": {
+      "hosting": {
+        "eamsv17": [
+          "eams-44eb1"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "eams-44eb1"
+  }
+}
