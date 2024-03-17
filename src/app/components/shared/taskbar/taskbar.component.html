@@ -1,1 +1,136 @@
-<p>taskbar works!</p>
+<footer>
+  <ul class="m-0 p-0 list-unstyled">
+      <li>
+          <div class="btn-group dropup">
+              <button type="button" class="btn btn-secondary dropdown-toggle" [matMenuTriggerFor]="menu">
+                  <img width="32px" height="28px" src="assets/home/main/menu.svg" alt="">
+              </button>
+              <mat-menu #menu="matMenu" class="start-menu-wrapper">
+                  <div>
+                      <button mat-menu-item>
+                          <div class="profile-button" *ngIf="$profileInfo | async as profileInfoData; else loading"
+                              (click)='lazyDialog.openDialog("account")'>
+                              <div class="user-img">
+                                  <img src="{{profileInfoData?.ProfileImage}}">
+                                  <img src="assets/shared/Ellipse 53.png">
+                              </div>
+                              <div class="user-info">
+                                  <h5>{{profileInfoData?.FName}} {{profileInfoData?.LName}}
+                                  </h5>
+                                  <p>Profile</p>
+                              </div>
+                          </div>
+                          <ng-template #loading>Loading...</ng-template>
+                      </button>
+                      @for (startMenuItem of $startMenuButtons | async; track $index) {
+                        <button mat-menu-item class="start-menu-items"
+                            >
+                            <img width="25px" height="22px" src="assets/icons/StartMenu/{{startMenuItem?.Name}}.svg">
+                            <span>{{startMenuItem?.Title}}</span>
+                        </button>
+                      }
+                  </div>
+
+              </mat-menu>
+          </div>
+      </li>
+      <li>
+          <a class="hvr-float" (click)='lazyDialog.openDialog("friends")'>
+              <img width="35px" height="28px" src="assets/shared/Chat_2_.png" alt="">
+          </a>
+      </li>
+
+      <li>
+          <a class="hvr-float">
+              <img width="30px" height="28px" src="assets/home/main/lock.svg" alt="">
+          </a>
+      </li>
+
+      <li>
+          <a class="hvr-float" [routerLink]="['/lock-screen']">
+              <img width="30px" height="28px" src="assets/home/main/unlock.svg" alt="">
+          </a>
+      </li>
+      <ul class="taskbar-tabs">
+        @for (tab of taskbarTaps | async; track $index) {
+          <ng-container>
+              <li [id]="'d_'+'fs'" class="tab">
+                  <a (click)="maximize(tab.name)">
+                      <img src="assets/icons/{{tab.folderName}}/{{tab?.name}}.svg" width="20px" height="20px" alt="" srcset="">
+                      <span class="ml-2 taskbar-tap-text">{{tab.title}}</span>
+                  </a>
+                  <div class="closeAfter" (click)="closeDialog(tab.name)"><i class="far fa-window-close"></i></div>
+              </li>
+          </ng-container>
+        }
+      </ul>
+  </ul>
+
+  <div class="d-flex flex-row-reverse align-items-center">
+      <div class="date-time">
+          <div class="time">
+              <span>{{getTime()}}</span>
+          </div>
+          <div class="date">
+              <span>{{todayDate | date: 'dd/MM/yyyy'}}</span>
+          </div>
+      </div>
+      <div>
+          <button (click)='changeTheme()' aria-controls="offcanvasRight">
+              <img src="assets/shared/icons8-moon-64.png" width="30px" height="30px" alt="" srcset="">
+          </button>
+          <button data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+              <img src="assets/shared/side-nav-open.png" width="30px" height="30px" alt="" srcset="">
+          </button>
+          <button (click)="openfullscreen()">
+              <img src="assets/home/main/full-screen.png" width="30px" height="30px" alt="" srcset="">
+          </button>
+      </div>
+  </div>
+</footer>
+
+<!--Start widgets sidenav-->
+<div data-bs-backdrop="false" tabindex="-1" data-bs-scroll="false" aria-controls="offcanvasScrolling"
+  class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    @if ($profileInfo | async) {
+      <div class="container" >
+        <h5 class="offcanvas-title" id="offcanvasRightLabel">Welcome, {{($profileInfo | async).FName}}</h5>
+    </div>
+    }
+     
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+      <div class="container">
+          <div class="working-times">
+              <div class="row justify-content-center">
+                  <div class="col-md-6 p-0">
+                      <div class="start-time">
+                          <div>
+                              <img src="assets/shared/clock-1.png" alt="">
+                          </div>
+                          <div>
+                              <div class="text-success">Start Time</div>
+                              <div>09:00</div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-6 p-0">
+                      <div class="finish-time">
+                          <div>
+                              <img src="assets/shared/clock.png" alt="">
+                          </div>
+                          <div>
+                              <div class="text-danger">Finish Time</div>
+                              <div>09:00</div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+  </div>
+</div>
+<!--End widgets sidenav-->

@@ -1,1 +1,112 @@
-<p>desktop works!</p>
+<!-- <section class="desktop" [ngStyle]="{ 'background-image': 'url(' + profileData.Wallpaper + ')'}"> -->
+<section class="desktop" [ngStyle]="{ 'background-image': 'url(' + '../../../assets/test.png' + ')'}">
+  <div class="context-menu-wrapper">
+    <div class="content">
+      <ul class="menu">
+        @for (context of [1,2,3,4,5]; track $index) {
+        <li class="item">
+          <img width="35px"
+            src="https://lh3.googleusercontent.com/hY60u5DV3GEpY7ybMKykauvX49mLWeEG4L2Lb16qvFjAO6e5Pc-AI46bNDmfaHjf2CwFZQzPriI2qhSkrI8=w80-h40"
+            alt="">
+          <span>right click icons</span>
+        </li>
+        }
+
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="home-content">
+      <ul class="list-unstyled m-0 p-0" id="list" style="width: 200px; flex-wrap: wrap;">
+        @for (icons of $desktopIcons | async; track $index) {
+        <li (click)='lazyDialog.openDialog(icons.Name, icons.FolderName, icons.Title)'>
+          <a>
+            <div class="folder-content">
+              <div class="icon">
+                <img src="assets/icons/{{icons.FolderName}}/{{icons?.Name}}.svg">
+              </div>
+              <div class="folder-name">
+                <span>
+                  {{icons?.Title}}
+                </span>
+              </div>
+            </div>
+          </a>
+        </li>
+        }
+
+
+        @for (group of $desktopGroups | async; track $index) {
+        <li data-bs-toggle="modal" [attr.data-bs-target]="'#'+'g'+group.Id">
+          <a>
+            <div class="folder-content">
+              <div class="icon">
+                <img src="assets/icons/groups/{{group.Name ?? 'default' | lowercase}}.svg">
+              </div>
+              <div class="folder-name">
+                <span>
+                  {{group?.Name}}
+                </span>
+              </div>
+            </div>
+          </a>
+        </li>
+        }
+
+
+        <li (click)="lazyDialog.openDialog('video-player','default')">
+          <a>
+            <div class="folder-content">
+              <div class="icon">
+                <img src="assets/icons/Insurance.svg">
+              </div>
+              <div class="folder-name">
+                <span>
+                  Video Player
+                </span>
+              </div>
+            </div>
+          </a>
+        </li>
+
+
+
+      </ul>
+
+    </div>
+  </div>
+</section>
+<app-taskbar></app-taskbar>
+
+@for (group of $desktopGroups | async; track $index) {
+<div data-bs-backdrop="static" data-bs-keyboard="false" cdkDrag [id]="'g'+group.Id" class="modal fade group-modal"
+  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">{{group?.Name}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-unstyled d-flex p-0 flex-wrap">
+          <li data-bs-dismiss="modal" *ngFor="let details of group.Details"
+            (click)='lazyDialog.openDialog(details.Name, details.FolderName)'>
+            <a>
+              <div class="folder-content">
+                <div class="icon">
+                  <img src="assets/icons/{{details.FolderName}}/{{details?.Name}}.svg">
+                </div>
+                <div class="folder-name">
+                  <span>
+                    {{details?.Title}}
+                  </span>
+                </div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+}

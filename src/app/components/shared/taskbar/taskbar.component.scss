@@ -1,0 +1,278 @@
+footer {
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  transition: background-color 0.5s ease;
+  z-index: 1421241;
+  button {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+  }
+  ul {
+    display: flex;
+    align-items: center;
+    li {
+      border-right: 1px solid #97979774;
+      padding-inline: 20px;
+      a {
+        cursor: pointer;
+        display: inline-block;
+        padding: 0;
+        text-decoration: none;
+        span {
+          color: #fff;
+        }
+      }
+      &:last-child {
+        a {
+          border: none;
+        }
+      }
+    }
+    .taskbar-tabs {
+      list-style: none;
+      padding: 0;
+      li {
+        padding: 0.6rem 1rem;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        .closeAfter {
+          transition: all 0.5s;
+          font-size: 16px;
+          background-color: transparent;
+          border-radius: 5px;
+          color: rgb(220, 53, 69);
+          cursor: pointer;
+        }
+        &:hover {
+          background: #3bb6ed52;
+        }
+        a {
+          border: none;
+          display: flex;
+          span {
+            font-family: "Arial";
+            margin-left: 0.4rem;
+            transition: color 0.5s ease;
+          }
+        }
+      }
+    }
+  }
+  .date-time {
+    text-align: center;
+    border-left: 1px solid gray;
+    padding-left: 0.7rem;
+    margin-inline: 0.3rem;
+    transition: all 0.5s;
+  }
+}
+
+// Menu
+
+.tab {
+  position: relative;
+}
+
+.dropdown-toggle {
+  background-color: transparent;
+  box-shadow: transparent;
+  border: none;
+  padding: 0;
+  &::after {
+    content: none !important;
+  }
+
+  &:hover {
+    background-color: transparent;
+    box-shadow: transparent;
+    border: none;
+  }
+  &:focus {
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+  }
+  &:focus-visible {
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+  }
+}
+
+#offcanvasRight {
+  transition: all 0.5s ease;
+  h5 {
+    font-weight: 600;
+    font-size: 24px;
+    transition: color 0.5s ease;
+  }
+  .offcanvas-body {
+    .working-times {
+      padding: 0.7rem 0;
+      border-bottom: 1px solid #b1acac;
+      font-size: 14px;
+      font-weight: 600;
+      color: #363636;
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 10px;
+      .start-time {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        border-right: 1px solid #8080804f;
+        justify-content: center;
+        .text-success {
+          color: #4fcc32 !important;
+          font-size: 16px;
+          & + div {
+            font-size: 18px;
+          }
+        }
+      }
+      .finish-time {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        .text-danger {
+          white-space: nowrap;
+          color: #e61b18 !important;
+          font-size: 16px;
+          & + div {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+    .achievements {
+      margin-block: 1rem;
+      .progress-pars {
+        display: flex;
+        justify-content: space-around;
+      }
+    }
+  }
+}
+
+.light-glass-background {
+  background-color: rgba(234, 234, 234, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  color: #363636 !important;
+  .user-profile .user-info h5 {
+    color: #269cd3 !important;
+  }
+  .user-profile .user-info p {
+    color: #363636 !important;
+  }
+}
+
+.dark-glass-background {
+  background-color: rgba(0, 0, 0, 0.252);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  color: #ffffff !important;
+  .user-profile .user-info h5 {
+    color: #fff !important;
+  }
+  .user-profile .user-info p {
+    color: #ffffff91 !important;
+  }
+}
+
+.start-menu-wrapper {
+  transition: background-color 0.5s ease;
+  width: 350px;
+  height: 513px;
+  .profile-button {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0rem;
+    border-bottom: 1px solid #808080;
+    transition: all 0.3s;
+    gap: 1rem;
+    &:hover {
+      background-color: #3bb5ed32;
+    }
+    button {
+      display: flex;
+      align-items: center;
+      text-align: left;
+      gap: 1.2rem;
+    }
+    .user-img {
+      position: relative;
+      img {
+        width: 70px;
+        border-radius: 50%;
+        &:last-child {
+          width: 20px;
+          position: absolute;
+          bottom: 0;
+          right: 0;
+        }
+      }
+    }
+    .user-info {
+      line-height: 23px;
+      h5,
+      p {
+        margin: 0;
+        transition: color .5s ease;
+      }
+      h5 {
+        color: #fff;
+        font-weight: bold;
+      }
+      p {
+        color: #ffffff91;
+      }
+    }
+  }
+
+  .mat-menu-item {
+    color: #fff;
+    &:first-of-type {
+      height: 103px !important;
+    }
+  }
+
+  .start-menu-items {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    img {
+      transition: all 0.3s ease;
+    }
+    span {
+      font-weight: 300;
+      transition: color .5s ease;
+    }
+    &:hover {
+      background-color: #269cd375;
+      img {
+        transform: translateX(5px);
+      }
+    }
+  }
+}
+.mat-menu-panel {
+  min-width: 350px !important;
+  min-height: 513px !important;
+}
+
+.cdk-overlay-connected-position-bounding-box{
+  left: 0 !important;
+}
