@@ -80,7 +80,29 @@ export class AuthService {
       );
       this.getLogInfo().subscribe({
         next: (data) => {
-          console.log(data)
+          if (!data) {
+            this._Toaster.error('Login faild');
+          } else {
+            localStorage.setItem(
+              'desktopGroups',
+              JSON.stringify(data?.desktopGroups)
+            );
+            localStorage.setItem(
+              'desktopIcons',
+              JSON.stringify(data?.desktopIcons)
+            );
+            localStorage.setItem(
+              'profileInfo',
+              JSON.stringify(data?.profileInfo)
+            );
+            localStorage.setItem(
+              'theme',
+              JSON.stringify(data?.profileInfo?.darkMode)
+            );
+            localStorage.setItem('startMenu', JSON.stringify(data?.startMenu));
+            this.currentUser.next(data?.jwtInfo);
+            this._Router.navigate(['/']);
+          }
         },
         error: () => {},
       });
@@ -93,32 +115,6 @@ export class AuthService {
     return this._HttpClient
       .post(`${environments.API_URL}/GetLoginInfo`, this.getLogInfoForm.value)
       .pipe(
-        tap((res: any) => {
-          console.log(res);
-          if (!res) {
-            this._Toaster.success('Login successfully');
-          } else {
-            sessionStorage.setItem(
-              'desktopGroups',
-              JSON.stringify(res?.DesktopGroups)
-            );
-            sessionStorage.setItem(
-              'desktopIcons',
-              JSON.stringify(res?.DesktopIcons)
-            );
-            sessionStorage.setItem(
-              'profileInfo',
-              JSON.stringify(res?.ProfileInfo)
-            );
-            localStorage.setItem(
-              'theme',
-              JSON.stringify(res?.ProfileInfo?.DarkMode)
-            );
-            sessionStorage.setItem('startMenu', JSON.stringify(res?.StartMenu));
-            this.currentUser.next(res?.JwtToken);
-            this._Router.navigate(['/']);
-          }
-        }),
         timeout({
           each: 60000,
           with: () =>

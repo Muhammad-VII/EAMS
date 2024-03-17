@@ -27,13 +27,14 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(
       provideFirebaseApp(() =>
         initializeApp({
-          projectId: 'eams-44eb1',
-          appId: '1:721322599066:web:fd450c41edda8c00173523',
-          storageBucket: 'eams-44eb1.appspot.com',
-          apiKey: 'AIzaSyDixjT5vXMlHo4mCZs65cn2eAEfHFfvjHg',
-          authDomain: 'eams-44eb1.firebaseapp.com',
-          messagingSenderId: '721322599066',
-          measurementId: 'G-GKD6TSKQ2X',
+          apiKey: "AIzaSyCPU5Y-G14q64ENzOJTcwzX3FR2KFYaBx0",
+          authDomain: "eams-app.firebaseapp.com",
+          databaseURL: "https://eams-app-default-rtdb.firebaseio.com",
+          projectId: "eams-app",
+          storageBucket: "eams-app.appspot.com",
+          messagingSenderId: "359175411857",
+          appId: "1:359175411857:web:b6adfa20bb95185aa3c730",
+          measurementId: "G-GV1B6WT759"
         })
       )
     ),

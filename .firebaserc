@@ -2,13 +2,13 @@
   "targets": {
     "eams-44eb1": {
       "hosting": {
-        "eamsv17": [
-          "eams-44eb1"
+        "eams-app": [
+          "eams-app"
         ]
       }
     }
   },
   "projects": {
-    "default": "eams-44eb1"
+    "default": "eams-app"
   }
 }
