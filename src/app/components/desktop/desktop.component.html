@@ -19,15 +19,15 @@
     <div class="home-content">
       <ul class="list-unstyled m-0 p-0" id="list" style="width: 200px; flex-wrap: wrap;">
         @for (icon of $desktopIcons | async; track $index) {
-        <li (click)='lazyDialog.openDialog(icon.Name, icon.FolderName, icon.Title)'>
+        <li (click)='lazyDialog.openDialog(icon.name, icon.folderName, icon.title)'>
           <a>
             <div class="folder-content">
               <div class="icon">
-                <img src="assets/icons/{{icon.FolderName}}/{{icon?.Name}}.svg">
+                <img src="../../../assets/icons/{{icon.folderName}}/{{icon.title}}.svg">
               </div>
               <div class="folder-name">
                 <span>
-                  {{icon?.Title}}
+                  {{icon?.title}}
                 </span>
               </div>
             </div>
@@ -37,23 +37,22 @@
 
 
         @for (group of $desktopGroups | async; track $index) {
-        <li data-bs-toggle="modal" [attr.data-bs-target]="'#'+'g'+group.Id">
+        <li data-bs-toggle="modal" [attr.data-bs-target]="'#'+'g'+group.id">
           <a>
             <div class="folder-content">
               <div class="icon">
-                <img src="assets/icons/groups/{{group.Name ?? 'default' | lowercase}}.svg">
+                <img src="assets/icons/groups/{{group.name ?? 'default' | lowercase}}.svg">
               </div>
               <div class="folder-name">
                 <span>
-                  {{group?.Name}}
+                  {{group?.name}}
                 </span>
               </div>
             </div>
           </a>
         </li>
         }
-
-
+<!-- 
         <li (click)="lazyDialog.openDialog('video-player','default')">
           <a>
             <div class="folder-content">
@@ -67,9 +66,7 @@
               </div>
             </div>
           </a>
-        </li>
-
-
+        </li> -->
 
       </ul>
 
@@ -79,31 +76,34 @@
 <app-taskbar></app-taskbar>
 
 @for (group of $desktopGroups | async; track $index) {
-<div data-bs-backdrop="static" data-bs-keyboard="false" cdkDrag [id]="'g'+group.Id" class="modal fade group-modal"
+<div data-bs-backdrop="static" data-bs-keyboard="false" cdkDrag [id]="'g'+group.id" class="modal fade group-modal"
   tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">{{group?.Name}}</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">{{group?.name}}</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <ul class="list-unstyled d-flex p-0 flex-wrap">
-          <li data-bs-dismiss="modal" *ngFor="let details of group.Details"
-            (click)='lazyDialog.openDialog(details.Name, details.FolderName)'>
+          @for (details of group.details; track $index) {
+            <li data-bs-dismiss="modal"
+            (click)='lazyDialog.openDialog(details.name, details.folderName)'>
             <a>
               <div class="folder-content">
                 <div class="icon">
-                  <img src="assets/icons/{{details.FolderName}}/{{details?.Name}}.svg">
+                  <img src="assets/icons/{{details.folderName}}/{{details?.name}}.svg">
                 </div>
                 <div class="folder-name">
                   <span>
-                    {{details?.Title}}
+                    {{details?.title}}
                   </span>
                 </div>
               </div>
             </a>
           </li>
+          }
+
         </ul>
       </div>
     </div>

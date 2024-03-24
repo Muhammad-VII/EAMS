@@ -25,10 +25,6 @@ export class DesktopComponent {
   ) {}
 
   ngOnInit(): void {
-    // this.$desktopIcons.subscribe({
-    //   next: (res) => {
-    //     console.log(res)
-    //   }
-    // })
+
   }
 }

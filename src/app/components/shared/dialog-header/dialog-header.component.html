@@ -1,1 +1,29 @@
-<p>dialog-header works!</p>
+<header cdkDragHandle>
+  <div class="title">
+    <h5>
+      <a href="{{props.infoLink}}" target="_blank">
+        <img src="assets/header-icons/information.svg" width="20px" alt="" srcset="">
+      </a>
+      <img class="mx-2" src="assets/home/window/icons/{{props.icon}}.png" width="20px" alt="" srcset="">
+      <span *ngIf="props.title">{{props.title}}</span>
+    </h5>
+  </div>
+  <div class="add-report-actions" *ngIf="props.btns.length > 0">
+    @for (button of props.btns; track $index) {
+    <button (click)="lazyDialogService.openDialog(button.targetComponent, button.folderName)">
+      <img src="assets/home/window/icons/{{button.icon}}.png" alt="">
+      <span>{{button.title}}</span>
+    </button>
+    }
+
+  </div>
+
+  <div class="modal-actions">
+    <button class="mx-2" id="minimize" (click)="minimize(props.name)">
+      <img src="assets/header-icons/minimise.svg" width="20px" alt="" srcset="">
+    </button>
+    <button (click)="close(props.name)" id="maximize">
+      <img src="assets/header-icons/close.svg" width="20px" alt="" srcset="">
+    </button>
+  </div>
+</header>

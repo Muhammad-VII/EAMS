@@ -21,8 +21,8 @@ export class TaskbarComponent {
     this._SharedService.startMenuButtons
   );
   todayDate: Date = new Date();
+  taskbarTaps = this.lazyDialog.taskbarTaps.asObservable();
   lockDevice(): void {
-    // this._AuthService.lockState.next(false);
     this._Router.navigate(['/lock-screen']);
   }
   constructor(
@@ -31,8 +31,8 @@ export class TaskbarComponent {
     // private _AuthService: AuthService,
     private _Router: Router,
     private _MatDialog: MatDialog
-  ) {}
-  taskbarTaps = this.lazyDialog.taskbarTaps.asObservable();
+  ) {
+  }
   openfullscreen() {
     if (document.fullscreenElement) {
       document

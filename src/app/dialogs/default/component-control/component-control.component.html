@@ -1,1 +1,72 @@
-<p>component-control works!</p>
+<section cdkDrag class="componenets-model" [id]="headerContent.name">
+  <app-dialog-header [props]="headerContent" [dialogRef]="dialogRef"></app-dialog-header>
+  <mat-dialog-content class="mat-typography p-0 m-0 componenets-content">
+      <div class="content">
+        <nz-table
+        nzShowSizeChanger
+        nzShowQuickJumper
+        [nzData]="listOfData"
+        [nzFrontPagination]="false"
+        [nzLoading]="loading"
+        [nzTotal]="total"
+        [nzPageSize]="pageSize"
+        [nzPageIndex]="pageIndex"
+        (nzQueryParams)="onQueryParamsChange($event)"
+      >
+        <thead>
+          <tr>
+            <th nzColumnKey="action">Actions</th>
+            <th nzColumnKey="icon" [nzFilters]="filterGender">Icon</th>
+            <th nzColumnKey="status">Status</th>
+            <th nzColumnKey="desktop">Desktop</th>
+            <th nzColumnKey="usedby">Used by</th>
+            <th nzCustomFilter>
+              Title
+              <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
+                <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
+              </nz-filter-trigger>
+            </th>
+            <th nzColumnKey="model" [nzSortFn]="true">Model</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (data of listOfData; track $index) {
+            <tr>
+              <td>
+                <button class="btn">
+                  <img width="24px" src="assets/icons/edit-button.png" alt="">
+                </button>
+            </td>
+              <td>
+                <nz-image-group>
+                  <img nz-image width="24px" nzSrc="{{data.Photo}}"/>
+                </nz-image-group>
+              </td>
+              <td>
+                @if (data.Sta) {
+                  <i class="fa-solid fa-check text-success"></i>
+                } @else {
+                  <i class="fa-solid fa-x text-danger"></i>            
+                }
+              </td>
+              <td><nz-switch [ngModel]="data.Desktop" disabled></nz-switch></td>
+              <td>{{data.UsedBy}}</td>
+              <td>{{data.Title}}</td>
+              <td>{{data.ModelTitle}}</td>
+            </tr>
+          }
+
+        </tbody>
+      </nz-table>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <div class="ant-table-filter-dropdown">
+          <div class="search-box">
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+            <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+            <button nz-button nzSize="small" (click)="reset()">Reset</button>
+          </div>
+        </div>
+      </nz-dropdown-menu>
+      </div>
+  </mat-dialog-content>
+</section>

@@ -1,8 +1,8 @@
+import { ComponentType } from '@angular/cdk/portal';
 import { Injectable } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { ComponentType } from 'ngx-toastr';
+import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject } from 'rxjs';
-declare let $: any;
+import { PlatformComponents } from './components.keys';
 @Injectable({
   providedIn: 'root',
 })
@@ -15,21 +15,22 @@ export class LazyDialogService {
     { name: string; title: string; id: string; folderName: string }[]
   >([]);
 
-  async openDialog(
+  openDialog(
     dialogName: string,
     folderName?: string,
     title?: string
-  ): Promise<MatDialogRef<any>> {
+  ): void {
     this.taps.push({ id: dialogName, title, name: dialogName, folderName });
     this.taskbarTaps.next(this.taps);
-    const chunk = await import(
-      `../dialogs/${folderName?.toLowerCase()}/${dialogName.toLowerCase()}/${dialogName.toLowerCase()}.component`
-    );
-    const dialogComponenet = Object.values(chunk)[0] as ComponentType<unknown>;
-    return this.dialog.open(dialogComponenet, {
-      hasBackdrop: false,
-      id: dialogName,
-    });
+    const apps = PlatformComponents;
+    for(const [key, value] of Object.entries(apps)) {
+      if(key === dialogName) {
+        this.dialog.open(value as ComponentType<unknown>, {
+          hasBackdrop: false,
+          id: dialogName,
+        });
+      }
+    }
   }
 
   closeDialogFromTaskbar(dialogName: string): void {

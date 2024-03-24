@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environments } from '../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';
+import { JwtService } from './jwt.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ import { AuthService } from './auth.service';
 export class DialogApisService {
 
   
-  constructor(private _HttpClient: HttpClient, private _AuthService: AuthService) { }
+  constructor(private _HttpClient: HttpClient, private _TokenService: JwtService) { }
 
   getComponents(take: number = 10, skip: number = 0): Observable<any> {
     return this._HttpClient.post(`${environments.API_URL}/GetAllComponent`, {
@@ -20,7 +20,7 @@ export class DialogApisService {
       skip:skip
     }, {
       headers: {
-        Authorization: `Bearer ${this._AuthService.currentUser.getValue()}`
+        Authorization: `Bearer ${this._TokenService.getToken()}`
       }
     })
   }
@@ -28,7 +28,7 @@ export class DialogApisService {
   getAddComponenetInfo(): Observable<any> {
     return this._HttpClient.post(`${environments.API_URL}/GetAddComponentInfo?lang=1`, {}, {
       headers: {
-        Authorization: `Bearer ${this._AuthService.currentUser.getValue()}`
+        Authorization: `Bearer ${this._TokenService.getToken()}`
       }
     })
   }
@@ -37,7 +37,7 @@ export class DialogApisService {
     return this._HttpClient.post(`${environments.API_URL}/AddNewComponent`, addComponentModel,
     {
       headers: {
-        Authorization: `Bearer ${this._AuthService.currentUser.getValue()}`
+        Authorization: `Bearer ${this._TokenService.getToken()}`
       }
     })
   }
@@ -46,7 +46,7 @@ export class DialogApisService {
     return this._HttpClient.post(`${environments.API_URL}/AddNewWidgets`, addWidgetModel,
     {
       headers: {
-        Authorization: `Bearer ${this._AuthService.currentUser.getValue()}`
+        Authorization: `Bearer ${this._TokenService.getToken()}`
       }
     })
   }
@@ -61,7 +61,7 @@ export class DialogApisService {
       skip:skip
     }, {
       headers: {
-        Authorization: `Bearer ${this._AuthService.currentUser.getValue()}`
+        Authorization: `Bearer ${this._TokenService.getToken()}`
       }
     })
   }
@@ -74,7 +74,7 @@ export class DialogApisService {
       skip:skip
     }, {
       headers: {
-        Authorization: `Bearer ${this._AuthService.currentUser.getValue()}`
+        Authorization: `Bearer ${this._TokenService.getToken()}`
       }
     })
   }
@@ -85,7 +85,7 @@ export class DialogApisService {
       userId: ""
     }, {
       headers: {
-        Authorization: `Bearer ${this._AuthService.currentUser.getValue()}`
+        Authorization: `Bearer ${this._TokenService.getToken()}`
       }
     })
   }
