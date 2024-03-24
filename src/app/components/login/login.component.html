@@ -3,17 +3,17 @@
     <div class="login-content">
       <div class="row justify-content-center align-items-center">
         <div class="col-lg-4 col-md-7 col-sm-10 my-4">
-          <div class="login-form" [formGroup]="loginForm">
+          <div class="login-form">
             <div class="form-header">
               <div class="logo text-center">
                 <img src="assets/shared/logo.svg" alt="" srcset="">
               </div>
             </div>
-            <form class="form-content" [formGroup]="loginForm" (ngSubmit)="signIn(loginForm)">
+            <form class="form-content" [formGroup]="loginForm" (ngSubmit)="submitLoginForm()">
               <div class="example-container">
                 <mat-form-field class="example-form-field w-100" appearance="fill">
                   <mat-label>Email</mat-label>
-                  <input matInput type="email" formControlName="Email">
+                  <input matInput type="email" formControlName="email">
                   @if (Email) {
                   <button matSuffix mat-icon-button aria-label="Clear" (click)="Email=''">
                     <mat-icon>close</mat-icon>
@@ -22,14 +22,14 @@
                 </mat-form-field>
                 <mat-form-field class="w-100" appearance="fill">
                   <mat-label>Password</mat-label>
-                  <input matInput [type]="hide ? 'password' : 'text'" formControlName="Password">
+                  <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
                   <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
                     [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                   </button>
                 </mat-form-field>
 
-                @if (!loginForm.controls['Password'].valid && loginForm.controls['Password'].touched) {
+                @if (!loginForm.controls['password'].valid && loginForm.controls['password'].touched) {
                 <span class="text-muted">Please Enter
                   Your Password</span>
                 }

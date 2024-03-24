@@ -1,5 +1,5 @@
 <!-- <section class="desktop" [ngStyle]="{ 'background-image': 'url(' + profileData.Wallpaper + ')'}"> -->
-<section class="desktop" [ngStyle]="{ 'background-image': 'url(' + '../../../assets/test.png' + ')'}">
+<section class="desktop" [ngStyle]="{ 'background-image': 'url(' + profileData.wallpaper + ')'}">
   <div class="context-menu-wrapper">
     <div class="content">
       <ul class="menu">
@@ -18,16 +18,16 @@
   <div class="container-fluid">
     <div class="home-content">
       <ul class="list-unstyled m-0 p-0" id="list" style="width: 200px; flex-wrap: wrap;">
-        @for (icons of $desktopIcons | async; track $index) {
-        <li (click)='lazyDialog.openDialog(icons.Name, icons.FolderName, icons.Title)'>
+        @for (icon of $desktopIcons | async; track $index) {
+        <li (click)='lazyDialog.openDialog(icon.Name, icon.FolderName, icon.Title)'>
           <a>
             <div class="folder-content">
               <div class="icon">
-                <img src="assets/icons/{{icons.FolderName}}/{{icons?.Name}}.svg">
+                <img src="assets/icons/{{icon.FolderName}}/{{icon?.Name}}.svg">
               </div>
               <div class="folder-name">
                 <span>
-                  {{icons?.Title}}
+                  {{icon?.Title}}
                 </span>
               </div>
             </div>

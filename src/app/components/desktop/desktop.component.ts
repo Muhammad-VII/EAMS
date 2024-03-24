@@ -24,5 +24,11 @@ export class DesktopComponent {
     public lazyDialog: LazyDialogService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // this.$desktopIcons.subscribe({
+    //   next: (res) => {
+    //     console.log(res)
+    //   }
+    // })
+  }
 }

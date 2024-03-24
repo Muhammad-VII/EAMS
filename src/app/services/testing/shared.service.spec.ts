@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LazyDialogService } from './lazy-dialog.service';
+import { SharedService } from '../shared.service';
 
-describe('LazyDialogService', () => {
-  let service: LazyDialogService;
+describe('SharedService', () => {
+  let service: SharedService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(LazyDialogService);
+    service = TestBed.inject(SharedService);
   });
 
   it('should be created', () => {

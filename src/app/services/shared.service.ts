@@ -14,16 +14,16 @@ export class SharedService {
     JSON.parse(localStorage.getItem('theme')!)
   );
   profileInfo: BehaviorSubject<any> = new BehaviorSubject(
-    JSON.parse(sessionStorage.getItem('profileInfo')!)
+    JSON.parse(localStorage.getItem('profileInfo')!)
   );
   startMenuButtons: BehaviorSubject<any> = new BehaviorSubject(
-    JSON.parse(sessionStorage.getItem('startMenu')!)
+    JSON.parse(localStorage.getItem('startMenu')!)
   );
   desktopGroups: BehaviorSubject<any> = new BehaviorSubject(
-    JSON.parse(sessionStorage.getItem('desktopGroups')!)
+    JSON.parse(localStorage.getItem('desktopGroups')!)
   );
   desktopIcons: BehaviorSubject<any> = new BehaviorSubject(
-    JSON.parse(sessionStorage.getItem('desktopIcons')!)
+    JSON.parse(localStorage.getItem('desktopIcons')!)
   );
   constructor(
     public _SpinnerService: NgxSpinnerService,

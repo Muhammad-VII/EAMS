@@ -11,11 +11,11 @@
                           <div class="profile-button" *ngIf="$profileInfo | async as profileInfoData; else loading"
                               (click)='lazyDialog.openDialog("account")'>
                               <div class="user-img">
-                                  <img src="{{profileInfoData?.ProfileImage}}">
+                                  <img src="{{profileInfoData?.profilePhoto}}">
                                   <img src="assets/shared/Ellipse 53.png">
                               </div>
                               <div class="user-info">
-                                  <h5>{{profileInfoData?.FName}} {{profileInfoData?.LName}}
+                                  <h5>{{profileInfoData?.fName}} {{profileInfoData?.lName}}
                                   </h5>
                                   <p>Profile</p>
                               </div>
@@ -25,8 +25,8 @@
                       @for (startMenuItem of $startMenuButtons | async; track $index) {
                         <button mat-menu-item class="start-menu-items"
                             >
-                            <img width="25px" height="22px" src="assets/icons/StartMenu/{{startMenuItem?.Name}}.svg">
-                            <span>{{startMenuItem?.Title}}</span>
+                            <img width="25px" height="22px" src="assets/icons/StartMenu/{{startMenuItem?.title}}.svg">
+                            <span>{{startMenuItem?.title}}</span>
                         </button>
                       }
                   </div>

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router, RouterLink } from '@angular/router';
 import { Observable, from } from 'rxjs';
-import { AuthService } from '../../../services/auth.service';
+// import { AuthService } from '../../../services/auth.service';
 import { LazyDialogService } from '../../../services/lazy-dialog.service';
 import { SharedService } from '../../../services/shared.service';
 import { AsyncPipe, DatePipe, NgIf } from '@angular/common';
@@ -22,13 +22,13 @@ export class TaskbarComponent {
   );
   todayDate: Date = new Date();
   lockDevice(): void {
-    this._AuthService.lockState.next(false);
+    // this._AuthService.lockState.next(false);
     this._Router.navigate(['/lock-screen']);
   }
   constructor(
     private _SharedService: SharedService,
     public lazyDialog: LazyDialogService,
-    private _AuthService: AuthService,
+    // private _AuthService: AuthService,
     private _Router: Router,
     private _MatDialog: MatDialog
   ) {}
@@ -60,11 +60,9 @@ export class TaskbarComponent {
     const time = new Date();
     const hours = time.getHours();
     const minutes = time.getMinutes();
-    const seconds = time.getSeconds();
     const ampm = hours >= 12 ? 'PM' : 'AM';
     const hh = hours % 12 || 12;
     const mm = minutes < 10 ? '0' + minutes : minutes;
-    const ss = seconds < 10 ? '0' + seconds : seconds;
     return `${hh}:${mm} ${ampm}`;
   }
 

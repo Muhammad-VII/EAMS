@@ -6,8 +6,8 @@ import { LockScreenComponent } from './components/lock-screen/lock-screen.compon
 import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
-  { path: '', canActivate: [authGuard], component: DesktopComponent },
-  { path: 'home', redirectTo: '', pathMatch: 'full' },
+  { path: 'desktop', canActivate: [authGuard], component: DesktopComponent },
+  { path: '', redirectTo: 'desktop', pathMatch: 'full' },
   { path: 'ticket-support', component: TicketSupportComponent },
   { path: 'login', component: LoginComponent },
   { path: 'lock-screen', component: LockScreenComponent },
